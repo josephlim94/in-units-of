@@ -1,5 +1,6 @@
-import ProductHero from './ProductHero';
+// import ProductHero from './ProductHero';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Main from './Main';
 
 const theme = createTheme({
   palette: {
@@ -36,7 +37,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <ProductHero />
+      <Main />
     </ThemeProvider>
   );
 }

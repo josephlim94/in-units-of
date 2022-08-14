@@ -12,34 +12,66 @@ const backgroundImage =
 const normalizing_unit = "meter";
 const conversion_map = {
   "meter": 1,
-  "Ariana Grande": 2
+  "Ariana Grande": 1.6
 }
+let inputValue = 0;
 
 export default function ProductHero() {
   const conversion_map_keys = Object.keys(conversion_map);
   const [objectOfInterest, setObjectOfInterest] = React.useState('');
   const [fromItem, setFromItem] = React.useState(conversion_map_keys[0]);
   const [toItem, setToItem] = React.useState(conversion_map_keys[0]);
+  let inputError = false;
+  const helperText = "Enter a number";
+  const inputErrorHelperText = "Must be a number";
 
   const calculateResultValue = () => {
-    return 1;
+    const normalizing_unit_value = conversion_map[normalizing_unit];
+    if (conversion_map.hasOwnProperty(fromItem) && conversion_map.hasOwnProperty(toItem)) {
+      const from_unit_value = conversion_map[fromItem];
+      const to_unit_value = conversion_map[toItem];
+
+      return inputValue * from_unit_value * normalizing_unit_value / to_unit_value;
+    }
+    throw Error("Programming error.")
   }
 
   const [resultValue, setResultValue] = React.useState(calculateResultValue());
 
+  const refreshResult = () => {
+    // Do calculation
+    let result_value;
+    try {
+      result_value = calculateResultValue();
+    } catch (e) {
+      console.log(e);
+    }
+
+    // Display result
+    setResultValue(result_value);
+  }
+
   const handleChangeObjectOfInterest = (event) => {
     setObjectOfInterest(event.target.value);
-    // Do calculation
-    // Display result
-    setResultValue(calculateResultValue());
+    if (Number(event.target.value)) {
+      inputValue = Number(event.target.value);
+    } else {
+      return;
+    }
+
+    refreshResult();
   };
 
   const handleChangeFromItem = (event) => {
     setFromItem(String(event.target.value));
+
+    refreshResult();
   };
 
   const handleChangeToItem = (event) => {
     setToItem(String(event.target.value));
+
+    refreshResult();
   };
 
   return (
@@ -63,6 +95,8 @@ export default function ProductHero() {
           variant="outlined"
           value={objectOfInterest}
           onChange={handleChangeObjectOfInterest}
+          error={inputError}
+          helperText={inputError ? inputErrorHelperText : helperText}
         />
         <Select
           labelId="demo-simple-select-label"
