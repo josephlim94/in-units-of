@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Button';
-import ProductHeroLayout from './ProductHeroLayout';
+import MainLayout from './MainLayout';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -88,7 +88,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <ProductHeroLayout
+      <MainLayout
         sxBackground={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundColor: '#7fc7d9', // Average color of the background image.
@@ -162,7 +162,7 @@ class Main extends React.Component {
             value={this.state.resultValue}
           />
         </Box>
-      </ProductHeroLayout>
+      </MainLayout>
     );
   }
 }

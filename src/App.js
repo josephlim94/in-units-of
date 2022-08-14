@@ -1,4 +1,3 @@
-// import ProductHero from './ProductHero';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Main from './Main';
 
