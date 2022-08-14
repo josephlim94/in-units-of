@@ -10,11 +10,14 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
-  [theme.breakpoints.up('sm')]: {
-    height: '80vh',
-    minHeight: 500,
-    maxHeight: 1300,
-  },
+  height: '100vh',
+  minHeight: 500,
+  maxHeight: 1300,
+  // [theme.breakpoints.up('sm')]: {
+  //   height: '100vh',
+  //   minHeight: 500,
+  //   maxHeight: 1300,
+  // },
 }));
 
 const Background = styled(Box)({
@@ -57,7 +60,7 @@ function ProductHeroLayout(props) {
             top: 0,
             bottom: 0,
             backgroundColor: 'common.black',
-            opacity: 0.5,
+            opacity: 0.8,
             zIndex: -1,
           }}
         />
